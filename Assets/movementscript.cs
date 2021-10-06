@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NewBehaviourScript : MonoBehaviour
+public class movementscript : MonoBehaviour
 {
     private NavMeshAgent agent;
+    private Animator ani;
 
-    [SerializeField] private float walkSpeed = 3.5f;
-    [SerializeField] private float runSpeed = 5.5f;
+
+    [SerializeField] private float walkSpeed = 1f;
+    [SerializeField] private float runSpeed = 4f;
+   
 
 
 
@@ -17,6 +20,7 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,5 +44,6 @@ public class NewBehaviourScript : MonoBehaviour
         {
             agent.speed = walkSpeed;
         }
+        ani.SetFloat("speed", agent.desiredVelocity.magnitude);
     }
 }
